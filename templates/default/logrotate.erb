@@ -1,0 +1,12 @@
+/srv/<%= @node[:fqdn] %>/shared/log/*.log {
+	daily
+	missingok
+  rotate 7
+  compress
+  delaycompress
+  notifempty
+  lastaction
+    pid=/srv/<%= @node[:fqdn] %>/shared/pids/unicorn.pid
+    test -s $pid && kill -USR1 "$(cat $pid)"
+  endscript
+}
