@@ -1,12 +1,9 @@
-hostname = node[:hostname]
+fqdn = node[:fqdn]
 
-template "/etc/logrotate.d/#{hostname}" do
+template "/etc/logrotate.d/#{fqdn}" do
   source "logrotate.erb"
   owner "root"
   group "root"
   mode 0644
-  variables({
-    :hostname => hostname
-  })
 end
 
